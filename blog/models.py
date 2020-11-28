@@ -47,7 +47,6 @@ class Post(models.Model):
         ('publish', 'Publish'),
     ]
 
-    author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(
         max_length=200,
@@ -72,6 +71,7 @@ class Post(models.Model):
         choices=POST_STATUS,
         default='publish'
     )
+    author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     published_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

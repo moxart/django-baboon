@@ -7,7 +7,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{% block title %}{% endblock title %}</title>
-    <link rel="stylesheet" href="{% static 'styles/main.min.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/dashboard.min.css' %}">
 </head>
 <body>
 
@@ -15,7 +15,9 @@
 
 {% block footer %}{% endblock footer %}
 
-<script src="{% static 'scripts/scripts.js' %}"></script>
-
+<script src="{% static 'scripts/jquery.js' %}"></script>
+<script src="{% static 'scripts/bootstrap.bundle.js' %}"></script>
+<script src="{% static 'scripts/trumbowyg.js' %}"></script>
+<script src="{% static 'scripts/dashboard.js' %}"></script>
 </body>
 </html>

@@ -16,11 +16,10 @@
     "url": "https://github.com/moxart/django-baboon/issues"
   },
   "homepage": "https://github.com/moxart/django-baboon#readme",
-  "dependencies": {
-    "bulma": "^0.9.1"
-  },
+  "dependencies": {},
   "devDependencies": {
     "autoprefixer": "^10.0.2",
+    "bootstrap-scss": "^4.5.3",
     "browser-sync": "^2.26.13",
     "del": "^6.0.0",
     "gulp": "^4.0.2",
@@ -31,9 +30,12 @@
     "gulp-rename": "^2.0.0",
     "gulp-sass": "^4.1.0",
     "gulp-sourcemaps": "^3.0.0",
+    "gulp-svg-sprite": "^1.5.0",
     "gulp-uglify": "^3.0.2",
+    "jquery": "^3.5.1",
     "node-sass": "^5.0.0",
     "node-sass-package-importer": "^5.3.2",
-    "postcss": "^8.1.9"
+    "postcss": "^8.1.9",
+    "trumbowyg": "^2.22.0"
   }
 }
