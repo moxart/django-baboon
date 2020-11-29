@@ -1,0 +1,40 @@
+{% extends 'dashboard/base.html' %}
+
+{% block title %} Dashboard {% endblock title %}
+
+{% block body %}
+    {% include 'dashboard/includes/navbar.html' %}
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="col-md-2 d-none d-md-block sidebar">
+                {% include 'dashboard/includes/sidebar.html' %}
+            </nav>
+
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 p-3 p-4">
+                <div class="page-header mb-5">
+                    <h1 class="h2"> <i data-feather="users"></i> Users</h1>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-8 col-lg-6 pt-6">
+                        <div class="list-group shadow-sm">
+                            {% for user in user_list %}
+                                <a href="{% url 'blog:dsh-user-edit' user.pk %}" class="list-group-item list-group-item-action">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h5 class="mb-1">{{ user.username }}</h5>
+                                    </div>
+                                    <p>{{ user.email }}</p>
+                                    <small>Joined at, {{ user.date_joined|date }}</small>
+                                </a>
+                            {% empty %}
+                                <div class="alert alert-warning" role="alert">
+                                    A simple warning alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+{% endblock body %}

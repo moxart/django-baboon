@@ -1,0 +1,39 @@
+{% extends 'dashboard/base.html' %}
+
+{% block title %} Dashboard {% endblock title %}
+
+{% block body %}
+    {% include 'dashboard/includes/navbar.html' %}
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="col-md-2 d-none d-md-block sidebar">
+                {% include 'dashboard/includes/sidebar.html' %}
+            </nav>
+
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 p-3 p-4">
+                <div class="page-header mb-5">
+                    <h1 class="h2"> <i data-feather="users"></i> New User</h1>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-8 col-lg-6 pt-6">
+                        <div class="list-group">
+                            <form method="post">
+                                {% csrf_token %}
+
+                                {% for field in form %}
+                                    <div class="form-group">
+                                        <label for="{{ form.subject.id_for_label }}" class="label">{{ field.label_tag }}</label>
+                                        {{ field }}
+                                    </div>
+                                {% endfor %}
+                                <br>
+                                <button type="submit" class="btn btn-dark btn-lg">Create</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+{% endblock body %}

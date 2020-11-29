@@ -1,1 +1,22 @@
+html,
+body {
+  height: 100%;
+}
 
+body {
+  font-family: 'Quicksand', sans-serif;
+  background-color: #fff;
+}
+
+* {
+  outline: none !important;
+  box-shadow: none !important;
+
+  &:focus {
+    border-color: #08090A !important;
+  }
+}
+
+.feather {
+  vertical-align: middle;
+}

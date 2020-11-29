@@ -1,0 +1,41 @@
+{% extends 'dashboard/base.html' %}
+
+{% block title %} Dashboard {% endblock title %}
+
+{% block body %}
+    {% include 'dashboard/includes/navbar.html' %}
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="col-md-2 d-none d-md-block sidebar">
+                {% include 'dashboard/includes/sidebar.html' %}
+            </nav>
+
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 p-3 p-4">
+                <div class="page-header mb-5">
+                    <h1 class="h2"> <i data-feather="layers"></i> Posts</h1>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-8 col-lg-6 pt-6">
+                        {% for post in post_list %}
+                            <div class="card mb-4 shadow-sm">
+                                <div class="card-header">
+                                    <i data-feather="clock"></i> {{ post.published_at|date }}
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title"><a href="{% url 'blog:dsh-post-edit' post.pk %}">{{ post.title }}</a></h5>
+                                    <p class="card-text">{{ post.excerpt }}</p>
+                                    <a href="{% url 'blog:dsh-post-edit' post.pk %}" class="btn btn-warning btn-sm">Update Post</a>
+                                </div>
+                            </div>
+                        {% empty %}
+                            <div class="alert alert-warning" role="alert">
+                                A simple warning alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+{% endblock body %}

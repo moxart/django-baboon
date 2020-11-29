@@ -59,13 +59,13 @@ class Post(models.Model):
     excerpt = models.TextField()
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
     tags = models.ManyToManyField(Tag)
+    description = models.CharField(max_length=200, null=True, blank=True)
     image = models.ImageField(
         upload_to='images/%Y/%m/%d',
         max_length=255,
         null=True,
         blank=True
     )
-    description = models.CharField(max_length=200, null=True, blank=True)
     status = models.CharField(
         max_length=20,
         choices=POST_STATUS,

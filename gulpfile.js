@@ -32,6 +32,7 @@ function scripts() {
         'blog/assets/blog/scripts/**/*.js',
         'blog/assets/dashboard/scripts/**/*.js',
         './node_modules/trumbowyg/dist/trumbowyg.js',
+        './node_modules/feather-icons/dist/feather.js',
     ])
         .pipe(uglify())
         .pipe(gulp.dest('blog/static/scripts'))
