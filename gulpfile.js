@@ -8,13 +8,11 @@ const imagemin = require('gulp-imagemin');
 const postcss = require('gulp-postcss');
 const rename = require('gulp-rename');
 const sourcemaps = require('gulp-sourcemaps');
+const merge = require('merge-stream');
 const del = require('del');
 
 function styles() {
-    return gulp.src([
-        'blog/assets/blog/styles/blog.scss',
-        'blog/assets/dashboard/styles/dashboard.scss'
-    ])
+    var blog = gulp.src('blog/assets/styles/blog.scss')
         .pipe(sourcemaps.init())
         .pipe(sass({
             includePaths: ['./node_modules'],
@@ -25,25 +23,46 @@ function styles() {
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('blog/static/styles'))
         .pipe(browserSync.stream());
+
+    var dashboard = gulp.src('dashboard/assets/styles/dashboard.scss')
+        .pipe(sourcemaps.init())
+        .pipe(sass({
+            includePaths: ['./node_modules'],
+            outputStyle: 'compressed'
+        }).on('error', sass.logError))
+        .pipe(rename({ suffix: '.min'}))
+        .pipe(postcss([autoprefixer()]))
+        .pipe(sourcemaps.write('.'))
+        .pipe(gulp.dest('dashboard/static/styles'))
+        .pipe(browserSync.stream());
+
+    return merge(blog, dashboard);
 }
 
 function scripts() {
-    return gulp.src([
-        'blog/assets/blog/scripts/**/*.js',
-        'blog/assets/dashboard/scripts/**/*.js',
+    var blog = gulp.src([
+        'blog/assets/scripts/**/*.js',
         './node_modules/trumbowyg/dist/trumbowyg.js',
         './node_modules/feather-icons/dist/feather.js',
     ])
         .pipe(uglify())
         .pipe(gulp.dest('blog/static/scripts'))
         .pipe(browserSync.stream());
+
+    var dashboard = gulp.src([
+        'dashboard/assets/scripts/**/*.js',
+        './node_modules/trumbowyg/dist/trumbowyg.js',
+        './node_modules/feather-icons/dist/feather.js',
+    ])
+        .pipe(uglify())
+        .pipe(gulp.dest('dashboard/static/scripts'))
+        .pipe(browserSync.stream());
+
+    return merge(blog, dashboard);
 }
 
 function images() {
-    return gulp.src([
-        'blog/assets/blog/images/*',
-        'blog/assets/dashboard/images/*'
-    ])
+    var blog = gulp.src('blog/assets/images/*')
         .pipe(imagemin([
             imagemin.gifsicle({interlaced: true}),
             imagemin.mozjpeg({quality: 75, progressive: true}),
@@ -58,13 +77,36 @@ function images() {
         .pipe(minify())
         .pipe(gulp.dest('blog/static/images'))
         .pipe(browserSync.stream());
+
+    var dashboard = gulp.src('dashboard/assets/images/*')
+        .pipe(imagemin([
+            imagemin.gifsicle({interlaced: true}),
+            imagemin.mozjpeg({quality: 75, progressive: true}),
+            imagemin.optipng({optimizationLevel: 5}),
+            imagemin.svgo({
+                plugins: [
+                    {removeViewBox: true},
+                    {cleanupIDs: false}
+                ]
+            })
+        ]))
+        .pipe(minify())
+        .pipe(gulp.dest('dashboard/static/images'))
+        .pipe(browserSync.stream());
+
+    return merge(blog, dashboard);
+
 }
 
 function clean() {
     return del([
-        './blog/static/styles',
-        './blog/static/scripts',
-        './blog/static/images']
+            './dashboard/static/styles',
+            './dashboard/static/scripts',
+            './dashboard/static/images',
+            './blog/static/styles',
+            './blog/static/scripts',
+            './blog/static/images'
+        ]
     );
 }
 
@@ -75,10 +117,14 @@ function watcher() {
         notify: false
     });
 
+    gulp.watch('dashboard/assets/**/*.scss', styles);
+    gulp.watch('dashboard/assets/**/*.js', scripts);
+    gulp.watch('dashboard/assets/*', images);
+    gulp.watch('dashboard/templates/**/*.html').on('change', browserSync.reload);
+
     gulp.watch('blog/assets/**/*.scss', styles);
     gulp.watch('blog/assets/**/*.js', scripts);
     gulp.watch('blog/assets/*', images);
-
     gulp.watch('blog/templates/**/*.html').on('change', browserSync.reload);
 }
 
@@ -88,7 +134,6 @@ const watch = gulp.series(build, gulp.parallel(watcher));
 exports.styles = styles;
 exports.scripts = scripts;
 exports.images = images;
-
 exports.clean = clean;
 exports.build = build;
 exports.watch = watch;

@@ -1,0 +1,26 @@
+{% extends 'dashboard/base.html' %}
+
+{% load static %}
+
+{% block title %} Login | Baboon {% endblock title %}
+
+{% block body_class %}dashboard login{% endblock %}
+
+{% block body %}
+    <form class="form-signin" action="{% url 'dashboard:login' %}" method="post">
+        {% csrf_token %}
+        <div class="text-center mb-4">
+            <a href=""><img class="mb-3" src="{% static 'images/samurai-baboon-login.png' %}" width="100" height="100" alt="samurai baboon login"></a>
+        </div>
+        <div class="form-group shadow">
+            <h3>Login</h3>
+            {% for field in form %}
+                <label for="{{ form.subject.id_for_label }}" class="label">{{ field.label_tag }}</label>
+                {{ field }}
+            {% endfor %}
+            <br>
+            <button type="submit" class="btn btn-lg btn-dark btn-block">Login <i data-feather="arrow-right"></i></button>
+        </div>
+        <a href="{% url 'blog:homepage' %}" class="back-to-home">Back to Home</a>
+    </form>
+{% endblock body %}

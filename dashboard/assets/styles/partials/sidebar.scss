@@ -1,0 +1,47 @@
+.sidebar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+  padding-top: 5rem;
+  background-color: #08090A;
+
+  .nav-link {
+    padding: 1rem;
+    font-size: 16px;
+    font-weight: 500;
+    color: #444;
+    .feather {
+      margin-right: 4px;
+      color: #444;
+      width: 18px;
+      height: 18px;
+      vertical-align: text-top;
+    }
+    &:hover {
+      color: #333;
+      .feather {
+        color: #333;
+      }
+    }
+  }
+  .nav-link.active {
+    .feather {
+      color: inherit;
+    }
+  }
+}
+.sidebar-sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 48px;
+  height: calc(100vh - 48px);
+  padding-top: .5rem;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.sidebar-heading {
+  font-size: .75rem;
+  text-transform: uppercase;
+}
