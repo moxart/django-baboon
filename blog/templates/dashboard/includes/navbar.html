@@ -1,4 +1,6 @@
 {% load static %}
 <nav class="navbar sticky-top flex-md-nowrap p-0">
-    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#"><img src="{% static 'images/baboon.png' %}" width="30" height="30" alt="" loading="lazy"> <span>BABOON</span></a>
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="{% url 'blog:dashboard' %}">
+        <img src="{% static 'images/samurai-baboon-login.png' %}" width="35" height="35" alt="" loading="lazy"> <span>BABOON</span>
+    </a>
 </nav>

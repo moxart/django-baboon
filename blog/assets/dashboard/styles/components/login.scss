@@ -11,10 +11,47 @@ body.login {
   padding-top: 40px;
   padding-bottom: 40px;
 
+  background-color: #EACEA7;
+
+  .back-to-home {
+    left: 1rem;
+    top: 1rem;
+    color: #754F44;
+  }
+
   .form-signin {
     width: 100%;
     max-width: 420px;
     padding: 15px;
     margin: 0 auto;
+
+    h3 {
+      margin-bottom: 2rem;
+      font-weight: 100;
+      font-size: 3rem;
+      text-transform: uppercase;
+      color: #721817;
+    }
+
+    .form-group {
+      background-color: #fff;
+      padding: 1rem;
+      border-radius: 10px;
+
+      label {
+        margin-bottom: .2rem;
+      }
+    }
+
+    button[type="submit"] {
+      margin-top: 1rem;
+      i {
+        text-align: right;
+      }
+    }
+
+    a.back-to-home {
+      font-size: 14px;
+    }
   }
 }
