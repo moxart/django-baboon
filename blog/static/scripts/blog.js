@@ -1,0 +1,1 @@
+$(function(){var s=$(".start-style");$(window).scroll(function(){10<=$(window).scrollTop()?s.removeClass("start-style").addClass("scroll-on"):s.removeClass("scroll-on").addClass("start-style")})});

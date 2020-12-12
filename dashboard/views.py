@@ -1,3 +1,4 @@
+from django.shortcuts import reverse
 from django.views import generic
 from django.views.generic import RedirectView
 from django.contrib.auth.models import User
@@ -15,6 +16,7 @@ from .forms.UserUpdateForm import UserUpdateForm
 from .forms.PostCreateForm import PostCreateForm
 from .forms.PostUpdateForm import PostUpdateForm
 from .forms.CategoryCreateForm import CategoryCreateForm
+from .forms.CategoryUpdateForm import CategoryUpdateForm
 
 
 @method_decorator(login_required, name='dispatch')
@@ -31,10 +33,9 @@ class PostListView(generic.ListView):
 
 
 @method_decorator(login_required, name='dispatch')
-class PostCreateView(generic.FormView):
+class PostCreateView(generic.CreateView):
     template_name = 'dashboard/layouts/post_new.html'
     form_class = PostCreateForm
-    success_url = '/dashboard/post/create'
 
     def form_valid(self, form):
         form.save()
@@ -51,11 +52,26 @@ class PostUpdateView(generic.UpdateView):
         form.save()
         return super().form_valid(form)
 
+    def get_success_url(self):
+        return reverse('dashboard:post-edit', kwargs={'pk': self.object.pk})
+
 
 @method_decorator(login_required, name='dispatch')
 class CategoryListView(generic.ListView):
     model = Category
     template_name = 'dashboard/layouts/categories.html'
+
+
+@method_decorator(login_required, name='dispatch')
+class CategoryUpdateView(generic.UpdateView):
+    template_name = 'dashboard/layouts/category_edit.html'
+    model = Category
+    form_class = CategoryUpdateForm
+    success_url = '/dashboard/categories'
+
+    def form_valid(self, form):
+        form.save()
+        return super().form_valid(form)
 
 
 @method_decorator(login_required, name='dispatch')

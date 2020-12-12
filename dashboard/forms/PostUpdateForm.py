@@ -11,7 +11,7 @@ class PostUpdateForm(forms.ModelForm):
             'content': forms.Textarea(attrs={'id': 'editor', 'rows': 15}),
             'excerpt': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
             'category': forms.Select(attrs={'class': 'form-control form-control-lg'}),
-            'tags': forms.Select(attrs={'multiple': '', 'class': 'form-control form-control-lg'}),
+            'tags': forms.CheckboxSelectMultiple(),
             'description': forms.Textarea(attrs={'class': 'textarea form-control', 'rows': 3}),
             'status': forms.Select(attrs={'class': 'form-control form-control-lg', 'style': 'width: 150px'}),
         }

@@ -10,7 +10,7 @@
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v27.0.3/dist/font-face.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="{% static 'styles/blog.min.css' %}">
 </head>
-<body>
+<body class="{% block body_class %}{% endblock body_class %}">
 
 {% block body %}{% endblock body %}
 

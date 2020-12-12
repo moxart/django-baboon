@@ -14,6 +14,7 @@ urlpatterns = [
     path('dashboard/post/<int:pk>/edit', views.PostUpdateView.as_view(), name='post-edit'),
     path('dashboard/categories', views.CategoryListView.as_view(), name='categories'),
     path('dashboard/category/create', views.CategoryCreateView.as_view(), name='category-create'),
+    path('dashboard/category/<int:pk>/edit', views.CategoryUpdateView.as_view(), name='category-edit'),
     path('dashboard/users', views.UserListView.as_view(), name='users'),
     path('dashboard/user/create', views.UserCreateView.as_view(), name='user-create'),
     path('dashboard/user/<int:pk>/edit', views.UserUpdateView.as_view(), name='user-edit'),

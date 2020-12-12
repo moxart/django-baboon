@@ -1,7 +1,49 @@
 {% extends 'blog/base.html' %}
-
+{% load static %}
 {% block title %} Blog {% endblock title %}
 
 {% block body %}
+    {% include 'blog/includes/navbar.html' %}
 
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-xs-12">
+                <div class="post__card">
+                    <a href="#"> <img src="{% static 'images/post1.jpg' %}" alt="" class="img-fluid"> </a>
+                    <div class="post__title"> Post Title </div>
+                    <div class="post__excerpt">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam architecto atque.
+                    </div>
+                    <div class="post__tags"> Photography . Visual Design . Web Design </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xs-12">
+                <div class="post__card">
+                    <a href="#"> <img src="{% static 'images/post1.jpg' %}" alt="" class="img-fluid"> </a>
+                    <div class="post__title"> Post Title </div>
+                    <div class="post__tags"> Photography . Visual Design . Web Design </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-xs-12">
+                <div class="post__card">
+                    <a href="#"> <img src="{% static 'images/post1.jpg' %}" alt="" class="img-fluid"> </a>
+                    <div class="post__title"> Post Title </div>
+                    <div class="post__tags"> Photography . Visual Design . Web Design </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xs-12">
+                <div class="post__card">
+                    <a href="#"> <img src="{% static 'images/post1.jpg' %}" alt="" class="img-fluid"> </a>
+                    <div class="post__title"> Post Title </div>
+                    <div class="post__tags"> Photography . Visual Design . Web Design </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+      {% include 'blog/includes/footer.html' %}
 {% endblock body %}

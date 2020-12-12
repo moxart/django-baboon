@@ -1,0 +1,29 @@
+div.post__card {
+  margin: 5rem 0;
+
+  .post__title {
+    font-size: 2em;
+    color: #c19e74;
+    font-weight: 700;
+    max-width: 100%;
+    padding-left: 5%;
+    padding-top: 3%;
+  }
+
+  .post__excerpt {
+    font-size: 1.1em;
+    font-weight: 300;
+    color: #9e9e9e;
+    padding-left: 5%;
+    padding-top: 1%;
+  }
+
+  .post__tags {
+    font-size: 1.1em;
+    font-weight: 300;
+    color: #333;
+    padding-left: 5%;
+    font-style: italic;
+    padding-top: 3%;
+  }
+}

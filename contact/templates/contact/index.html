@@ -1,0 +1,32 @@
+{% extends 'contact/base.html' %}
+{% load static %}
+{% block title %} Contact {% endblock title %}
+{% block body_class %}blog contact{% endblock body_class %}
+
+{% block body %}
+    {% include 'blog/includes/navbar.html' %}
+
+    <section class="jumbotron jumbotron-fluid jumbotron__baboon__secondary">
+        <div class="container">
+            <h1 class="display-5">Get In Touch</h1>
+        </div>
+    </section>
+
+    <div class="container">
+        <form class="form-contact" action="" method="post">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <h3>Hang Out With Me.</h3>
+                {% for field in form %}
+                    <label for="{{ form.subject.id_for_label }}" class="label">{{ field.label_tag }}</label>
+                    {{ field }}
+                    <br>
+                {% endfor %}
+                <button type="submit" class="btn btn-lg btn-dark btn-block">Submit <i data-feather="arrow-right"></i></button>
+            </div>
+        </form>
+    </div>
+
+    {% include 'blog/includes/footer.html' %}
+{% endblock body %}

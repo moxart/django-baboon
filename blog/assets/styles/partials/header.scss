@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Quattrocento&display=swap');
+
+.navbar__baboon {
+  background-color: #383838;
+  opacity: 1;
+  transform: translateY(0);
+  -webkit-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+
+  .navbar-brand {
+    font-family: 'Quattrocento', serif;
+    font-weight: bold;
+
+    img {
+      margin-right: .75rem;
+    }
+  }
+
+  .btn__login {
+    background-color: #212121;
+    font-size: 1rem;
+    font-weight: 100;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border: none;
+
+    &:hover,
+    &:focus {
+      background-color: #111;
+    }
+  }
+
+  .navbar-toggler {
+    float: right;
+    border: none;
+    padding-right: 0;
+
+    &:active, &:focus {
+      outline: none;
+    }
+  }
+
+  .navbar-toggler-icon {
+    width: 24px;
+    height: 19px;
+    background-image: none;
+    position: relative;
+    border-bottom: 3px solid #c19e74;
+    transition: all 300ms linear;
+
+    &:after, &:before {
+      width: 24px;
+      position: absolute;
+      height: 3px;
+      background-color: #c19e74;
+      top: 0;
+      left: 0;
+      content: '';
+      z-index: 2;
+      transition: all 300ms linear;
+    }
+
+    &:after {
+      top: 8px;
+    }
+  }
+
+  .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
+    &:after {
+      transform: rotate(45deg);
+    }
+
+    &:before {
+      transform: translateY(8px) rotate(-45deg);
+    }
+
+    border-color: transparent;
+  }
+}
+

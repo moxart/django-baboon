@@ -1,0 +1,36 @@
+body.contact {
+  background-color: #fff;
+  .form-contact {
+    width: 100%;
+    max-width: 600px;
+    padding: 15px;
+    margin: 0 auto;
+
+    h3 {
+      margin-bottom: 2rem;
+      font-weight: 100;
+      font-size: 2rem;
+      text-transform: uppercase;
+    }
+
+    .form-group {
+      padding: 1rem;
+      border-radius: 10px;
+
+      label {
+        margin-bottom: .2rem;
+      }
+    }
+
+    button[type="submit"] {
+      margin-top: 1rem;
+      i {
+        text-align: right;
+      }
+    }
+
+    a.back-to-home {
+      font-size: 14px;
+    }
+  }
+}

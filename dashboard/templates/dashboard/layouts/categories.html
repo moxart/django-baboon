@@ -16,9 +16,11 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-12 col-md-8 col-lg-6 pt-6">
-                        <div class="list-group shadow-sm">
+                        {% if category_list %}
+                            <a href="{% url 'dashboard:category-create' %}" class="btn btn-primary mb-3">Create New</a>
+
                             {% for cat in category_list %}
-                                <a href="#" class="list-group-item list-group-item-action">
+                                <a href="{% url 'dashboard:category-edit' cat.pk %}" class="list-group-item list-group-item-action">
                                     <div class="d-flex w-100 justify-content-between">
                                         <h5 class="mb-1">{{ cat.title }}</h5>
                                     </div>
@@ -28,12 +30,15 @@
                                     {% endif %}
                                     <small>Created at, {{ cat.published_at|date }}</small>
                                 </a>
-                            {% empty %}
+                            {% endfor %}
+                        {% else %}
+                            <div class="list-group">
                                 <div class="alert alert-warning" role="alert">
                                     A simple warning alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
                                 </div>
-                            {% endfor %}
-                        </div>
+                                <a href="{% url 'dashboard:category-create' %}" class="btn btn-primary">Create Category</a>
+                            </div>
+                        {% endif %}
                     </div>
                 </div>
             </main>
