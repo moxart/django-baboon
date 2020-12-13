@@ -22,12 +22,6 @@
                         <div class="post__tags">{{post.tags.all|join:" . "|lower}}</div>
                     </div>
                 </div>
-            {% empty %}
-                <div class="col-md-6 col-xs-12">
-                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                        <strong>No Post Found.</strong>
-                    </div>
-                </div>
             {% endfor %}
         </div>
     </div>

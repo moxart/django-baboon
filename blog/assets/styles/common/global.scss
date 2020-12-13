@@ -4,8 +4,14 @@ html {
 }
 
 body {
-  padding-top: 3.4rem;
+  padding-top: 5rem;
   margin-bottom: 150px;
   font-family: 'Vazir', sans-serif !important;
   background-color: #121212;
+  color: #9e9e9e;
+}
+
+::selection {
+  background-color: #888;
+  color: #ddd;
 }

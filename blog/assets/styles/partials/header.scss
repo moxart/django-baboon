@@ -16,12 +16,33 @@
     }
   }
 
+  .btn__contact {
+    background-color: #212121;
+    font-size: 1rem;
+    font-weight: 100;
+    letter-spacing: 1px;
+    border: none;
+  }
+
   .btn__login {
     background-color: #212121;
     font-size: 1rem;
     font-weight: 100;
     letter-spacing: 1px;
-    text-transform: uppercase;
+    border: none;
+
+    &:hover,
+    &:focus {
+      background-color: #111;
+    }
+  }
+
+  .btn__logout {
+    background-color: #E84855;
+    color: #ddd !important;
+    font-size: 1rem;
+    font-weight: 100;
+    letter-spacing: 1px;
     border: none;
 
     &:hover,

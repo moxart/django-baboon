@@ -36,6 +36,7 @@ class PostListView(generic.ListView):
 class PostCreateView(generic.CreateView):
     template_name = 'dashboard/layouts/post_new.html'
     form_class = PostCreateForm
+    success_url = '/dashboard/posts'
 
     def form_valid(self, form):
         form.save()
