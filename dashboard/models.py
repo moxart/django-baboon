@@ -3,6 +3,8 @@ from django.db.models.signals import pre_save
 from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
 
+from sorl.thumbnail import ImageField
+
 
 class Category(models.Model):
     title = models.CharField(max_length=200, unique=True)
@@ -60,7 +62,7 @@ class Post(models.Model):
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
     tags = models.ManyToManyField(Tag)
     description = models.CharField(max_length=200, null=True, blank=True)
-    image = models.ImageField(
+    image = ImageField(
         upload_to='images/%Y/%m/%d',
         max_length=255,
         null=True,

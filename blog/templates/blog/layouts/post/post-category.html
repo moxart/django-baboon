@@ -1,5 +1,6 @@
 {% extends 'blog/base.html' %}
 {% load static %}
+{% load thumbnail %}
 {% block title %} Blog {% endblock title %}
 
 {% block body %}
@@ -11,7 +12,9 @@
                 <div class="col-md-6 col-xs-12">
                     <div class="post__card">
                         <a href="{% url 'blog:post-single' post.slug %}">
-                            <img src="{% static 'images/post1.jpg' %}" alt="{{ post.title }}" class="img-fluid rounded">
+                            {% thumbnail post.image "570x470" crop="center" as im %}
+                                <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{ post.title }}" class="img-fluid rounded">
+                            {% endthumbnail %}
                         </a>
                         <div class="post__title"><a href="{% url 'blog:post-single' post.slug %}">{{ post.title }}</a></div>
                         <div class="post__meta">
@@ -20,6 +23,12 @@
                         </div>
                         <div class="post__excerpt">{{ post.excerpt }}</div>
                         <div class="post__tags">{{post.tags.all|join:" . "|lower}}</div>
+                    </div>
+                </div>
+            {% empty %}
+                <div class="col-md-6 col-xs-12">
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <strong>No Post Found.</strong>
                     </div>
                 </div>
             {% endfor %}

@@ -46,12 +46,12 @@ class PostCreateView(generic.CreateView):
 @method_decorator(login_required, name='dispatch')
 class PostUpdateView(generic.UpdateView):
     template_name = 'dashboard/layouts/post_update.html'
-    model = Post
     form_class = PostUpdateForm
+    model = Post
 
     def form_valid(self, form):
-        form.save()
-        return super().form_valid(form)
+        form.save(commit=True)
+        return super(PostUpdateView, self).form_valid(form)
 
     def get_success_url(self):
         return reverse('dashboard:post-edit', kwargs={'pk': self.object.pk})

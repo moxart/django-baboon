@@ -1,5 +1,6 @@
 {% extends 'blog/base.html' %}
 {% load static %}
+{% load thumbnail %}
 {% block title %} Blog {% endblock title %}
 {% block body_class %}blog post post-single{% endblock body_class %}
 
@@ -9,10 +10,12 @@
     <div class="container">
         <div class="row">
             <div class="col-md-10 offset-md-1 post__single">
+                <section class="mb-4">
+                    {% thumbnail post.image "1200x650" crop="center" as im %}
+                        <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{ post.title }}" class="img-fluid rounded">
+                    {% endthumbnail %}
+                </section>
                 <header>
-                    <div class="thumbnail">
-                        <img src="{% static 'images/post2.jpg' %}" alt="{{ post.title }}" class="img-fluid rounded mb-4">
-                    </div>
                     <div class="page__header">
                         <h3>{{ post.title|safe }}</h3>
                     </div>

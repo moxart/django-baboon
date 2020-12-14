@@ -181,6 +181,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'sorl.thumbnail',
 ]
 
 MIDDLEWARE = [
@@ -265,9 +266,6 @@ STATIC_URL = '/static/'
 
 # Base url to serve media files
 MEDIA_URL = '/media/'
-
-# Path where media is stored
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 LOGIN_REDIRECT_URL = '/login/'
 LOGIN_URL = '/login/'
