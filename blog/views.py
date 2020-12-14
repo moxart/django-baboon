@@ -1,5 +1,6 @@
 from django.views import generic
 
+from django.contrib.auth.models import User
 from dashboard.models import Post, Category
 
 
@@ -34,6 +35,19 @@ class PostCategoryView(generic.ListView):
         context = super().get_context_data(**kwargs)
         context['posts'] = Post.objects.filter(
             category__slug=self.kwargs['slug']
+        )
+        context['categories'] = Category.objects.all()
+        return context
+
+
+class PostAuthorView(generic.ListView):
+    model = User
+    template_name = 'blog/layouts/post/post-author.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['posts'] = Post.objects.filter(
+            author__username=self.kwargs['username']
         )
         context['categories'] = Category.objects.all()
         return context

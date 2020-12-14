@@ -21,7 +21,7 @@
                     </div>
                     <div class="post__meta">
                         <div class="author">
-                            <a href="#">@{{ post.author }}</a>
+                            <a href="{% url 'blog:post-author' post.author %}">@{{ post.author }}</a>
                         </div>
                         <time>{{ post.published_at|date }}</time>
                     </div>

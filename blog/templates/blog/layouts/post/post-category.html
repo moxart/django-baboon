@@ -18,7 +18,7 @@
                         </a>
                         <div class="post__title"><a href="{% url 'blog:post-single' post.slug %}">{{ post.title }}</a></div>
                         <div class="post__meta">
-                            <div class="author"><a href="#">@{{ post.author }}</a></div>
+                            <div class="author"><a href="{% url 'blog:post-author' post.author %}">@{{ post.author }}</a></div>
                             <time>{{ post.published_at|date }}</time>
                         </div>
                         <div class="post__excerpt">{{ post.excerpt }}</div>
