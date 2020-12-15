@@ -1,4 +1,5 @@
 from django.views import generic
+from django.core.paginator import Paginator
 
 from django.contrib.auth.models import User
 from dashboard.models import Post, Category
@@ -8,11 +9,12 @@ from dashboard.models import Post, Category
 class HomeView(generic.ListView):
     model = Post
     template_name = 'blog/index.html'
-    paginate_by = 10
+    context_object_name = 'posts'
+    paginate_by = 2
+    queryset = Post.objects.filter(status="publish").order_by('-published_at')
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['posts'] = Post.objects.filter(status="publish").order_by('-published_at')
         context['categories'] = Category.objects.all()
         return context
 
@@ -43,6 +45,7 @@ class PostCategoryView(generic.ListView):
 class PostAuthorView(generic.ListView):
     model = User
     template_name = 'blog/layouts/post/post-author.html'
+    paginate_by = 10
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
