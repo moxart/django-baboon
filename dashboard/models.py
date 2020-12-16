@@ -84,6 +84,17 @@ class Post(models.Model):
         ordering = ['-published_at']
 
 
+class Media(models.Model):
+    title = models.CharField(max_length=200, unique=True)
+    image = ImageField(
+        upload_to='images/%Y/%m/%d',
+        max_length=255,
+        null=False,
+        blank=False
+    )
+    uploaded_at = models.DateTimeField(auto_now=True)
+
+
 def _generate_unique_slug(instance):
     slug = slugify(instance.title)
     qs = Post.objects.filter(slug=slug).order_by('-id')

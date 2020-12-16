@@ -8,7 +8,7 @@ from django.utils.decorators import method_decorator
 from django.views.generic import TemplateView
 from django.http import HttpResponseRedirect
 
-from dashboard.models import Post, Category
+from dashboard.models import Post, Category, Media
 
 from .forms.UserLoginForm import UserLoginForm
 from .forms.UserCreateForm import UserCreateForm
@@ -17,6 +17,7 @@ from .forms.PostCreateForm import PostCreateForm
 from .forms.PostUpdateForm import PostUpdateForm
 from .forms.CategoryCreateForm import CategoryCreateForm
 from .forms.CategoryUpdateForm import CategoryUpdateForm
+from .forms.MediaUploadForm import MediaUploadNewForm
 
 
 @method_decorator(login_required, name='dispatch')
@@ -113,6 +114,24 @@ class UserCreateView(generic.FormView):
     def form_valid(self, form):
         form.save()
         return super().form_valid(form)
+
+
+@method_decorator(login_required, name='dispatch')
+class MediaUploadNewView(generic.FormView):
+    template_name = 'dashboard/layouts/media_upload_new.html'
+    form_class = MediaUploadNewForm
+    success_url = '/dashboard/media/uploaded'
+
+    def form_valid(self, form):
+        form.save()
+        return super().form_valid(form)
+
+
+@method_decorator(login_required, name='dispatch')
+class MediaUploadListView(generic.ListView):
+    model = Media
+    template_name = 'dashboard/layouts/media_upload_list.html'
+    paginate_by = 2
 
 
 class LoginView(generic.FormView):
