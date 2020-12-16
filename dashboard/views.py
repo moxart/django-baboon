@@ -1,23 +1,23 @@
-from django.shortcuts import reverse
-from django.views import generic
-from django.views.generic import RedirectView
-from django.contrib.auth.models import User
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
-from django.utils.decorators import method_decorator
-from django.views.generic import TemplateView
+from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
+from django.shortcuts import reverse
+from django.urls import reverse_lazy
+from django.utils.decorators import method_decorator
+from django.views import generic
+from django.views.generic import RedirectView
+from django.views.generic import TemplateView
 
 from dashboard.models import Post, Category, Media
-
-from .forms.UserLoginForm import UserLoginForm
-from .forms.UserCreateForm import UserCreateForm
-from .forms.UserUpdateForm import UserUpdateForm
-from .forms.PostCreateForm import PostCreateForm
-from .forms.PostUpdateForm import PostUpdateForm
 from .forms.CategoryCreateForm import CategoryCreateForm
 from .forms.CategoryUpdateForm import CategoryUpdateForm
 from .forms.MediaUploadForm import MediaUploadNewForm
+from .forms.PostCreateForm import PostCreateForm
+from .forms.PostUpdateForm import PostUpdateForm
+from .forms.UserCreateForm import UserCreateForm
+from .forms.UserLoginForm import UserLoginForm
+from .forms.UserUpdateForm import UserUpdateForm
 
 
 @method_decorator(login_required, name='dispatch')
@@ -131,7 +131,14 @@ class MediaUploadNewView(generic.FormView):
 class MediaUploadListView(generic.ListView):
     model = Media
     template_name = 'dashboard/layouts/media_upload_list.html'
-    paginate_by = 2
+    paginate_by = 5
+
+
+@method_decorator(login_required, name='dispatch')
+class MediaDeleteView(generic.DeleteView):
+    model = Media
+    template_name = 'dashboard/layouts/media_confirm_delete.html'
+    success_url = reverse_lazy('dashboard:media-upload-list')
 
 
 class LoginView(generic.FormView):

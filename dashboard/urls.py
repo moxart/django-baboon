@@ -1,8 +1,6 @@
-from django.urls import path
-from django.conf.urls.static import static
 from django.conf import settings
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.contrib.auth.decorators import login_required
+from django.conf.urls.static import static
+from django.urls import path
 
 from . import views
 
@@ -20,6 +18,7 @@ urlpatterns = [
     path('dashboard/user/<int:pk>/edit', views.UserUpdateView.as_view(), name='user-edit'),
     path('dashboard/media/upload', views.MediaUploadNewView.as_view(), name='media-upload'),
     path('dashboard/media/uploaded', views.MediaUploadListView.as_view(), name='media-upload-list'),
+    path('dashboard/media/delete/<int:pk>', views.MediaDeleteView.as_view(), name='media-delete'),
     path('login/', views.LoginView.as_view(), name='login'),
     path('logout/', views.LogoutView.as_view(), name='logout'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

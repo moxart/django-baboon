@@ -1,7 +1,6 @@
-from django.views import generic
-from django.core.paginator import Paginator
-
 from django.contrib.auth.models import User
+from django.views import generic
+
 from dashboard.models import Post, Category
 
 

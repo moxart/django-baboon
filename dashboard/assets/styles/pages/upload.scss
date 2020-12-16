@@ -1,0 +1,29 @@
+body.upload {
+  img {
+    margin-right: 1rem;
+  }
+
+  .media-title {
+    font-size: 14px;
+  }
+
+  span.buttons {
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    a.delete {
+      svg {
+        stroke: #FF36AB;
+      }
+    }
+
+    a.edit {
+      svg {
+        stroke: #1A8FE3;
+      }
+    }
+  }
+}
+

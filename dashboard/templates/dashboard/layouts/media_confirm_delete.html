@@ -1,0 +1,31 @@
+{% extends 'dashboard/base.html' %}
+{% load thumbnail %}
+{% block title %} Dashboard {% endblock title %}
+
+{% block body %}
+    {% include 'dashboard/includes/navbar.html' %}
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="col-md-2 d-none d-md-block sidebar">
+                {% include 'dashboard/includes/sidebar.html' %}
+            </nav>
+
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 p-3 p-4">
+                <div class="page-header mb-5">
+                    <h1 class="h2">Are you sure you want to delete "{{ media.title }}" ?</h1>
+                    <form method="post">
+                        {% csrf_token %}
+                        <input type="submit" class="btn btn-dark mt-3" value="Confirm">
+                    </form>
+
+                    <div class="media-image mt-4">
+                        {% thumbnail media.image "400x400" crop="center" as im %}
+                            <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{ post.title }}" class="card-image-top img-fluid rounded-lg">
+                        {% endthumbnail %}
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+{% endblock body %}

@@ -1,6 +1,6 @@
 from django.conf import settings
-from django.views import generic
 from django.core.mail import send_mail
+from django.views import generic
 
 from contact.forms.ContactForm import ContactForm
 

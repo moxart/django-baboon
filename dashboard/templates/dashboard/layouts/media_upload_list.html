@@ -1,6 +1,8 @@
 {% extends 'dashboard/base.html' %}
 {% load thumbnail %}
-{% block title %} Dashboard {% endblock title %}
+{% block title %} Uploaded | Baboon {% endblock title %}
+
+{% block body_class %}dashboard upload{% endblock %}
 
 {% block body %}
     {% include 'dashboard/includes/navbar.html' %}
@@ -17,7 +19,7 @@
 
                 <div class="row">
                     <div class="col-sm-12 col-md-8 col-lg-6 pt-6">
-                        <a href="{% url 'dashboard:media-upload' %}" class="btn btn-primary my-3">Create New</a>
+                        <a href="{% url 'dashboard:media-upload' %}" class="btn btn-dark my-3">Create New</a>
                     </div>
                 </div>
 
@@ -25,7 +27,7 @@
                     <div class="col-sm-12">
                         {% if is_paginated %}
                             <nav aria-label="Page navigation example">
-                                <ul class="pagination">
+                                <ul class="pagination justify-content-start">
                                     {% if page_obj.has_previous %}
                                         <li class="page-item">
                                             <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
@@ -72,23 +74,25 @@
                 </div>
 
                 <div class="row">
-
-                    {% for media in media_list %}
-                        <div class="col-sm-3 mb-4">
-                            <div class="card">
-                                {% thumbnail media.image "570x470" crop="center" as im %}
-                                    <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{ post.title }}" class="card-image-top img-fluid">
-                                {% endthumbnail %}
-                                <div class="card-body">
-                                    <a href="">{{ media.title }}</a>
-                                </div>
-                            </div>
-                        </div>
-                    {% empty %}
-                        <div class="alert alert-warning" role="alert">
-                            A simple warning alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
-                        </div>
-                    {% endfor %}
+                    <div class="col-md-12">
+                        <ul class="list-group list-upload">
+                            {% for media in media_list %}
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <div class="float-left">
+                                        {% thumbnail media.image "100x100" crop="center" as im %}
+                                            <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{ post.title }}" class="card-image-top img-fluid rounded-lg">
+                                        {% endthumbnail %}
+                                        <span class="media-title">{{ media.title }}</span>
+                                    </div>
+                                    <span class="badge badge-light badge-pill buttons">
+                                        <a href="#" class="btn btn-link show"><i data-feather="eye"></i></a>
+                                        <a href="#" class="btn btn-link edit"><i data-feather="edit"></i></a>
+                                        <a href="{% url 'dashboard:media-delete' media.pk %}" class="btn btn-link delete"><i data-feather="trash-2"></i></a>
+                                    </span>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
                 </div>
             </main>
         </div>
