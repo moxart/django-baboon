@@ -1,15 +1,12 @@
 /* PrismJS 1.22.0
-https://prismjs.com/download.html#themes=prism&languages=markup+css+clike+javascript+git+go+python&plugins=line-numbers */
+https://prismjs.com/download.html#themes=prism-funky&languages=markup+css+clike+javascript+django+docker+js-extras+markup-templating+php+python+sass+scss+sql+vim+yaml&plugins=line-numbers */
 /**
- * prism.js default theme for JavaScript, CSS and HTML
- * Based on dabblet (http://dabblet.com)
+ * prism.js Funky theme
+ * Based on “Polyfilling the gaps” talk slides http://lea.verou.me/polyfilling-the-gaps/
  * @author Lea Verou
  */
 
 code[class*="language-"] {
-  color: black;
-  background: none;
-  text-shadow: 0 1px white;
   font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
   font-size: 1em;
   text-align: left;
@@ -28,9 +25,6 @@ code[class*="language-"] {
 }
 
 pre[class*="language-"] {
-  color: black;
-  background: none;
-  text-shadow: 0 1px white;
   font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
   font-size: 1em;
   text-align: left;
@@ -46,63 +40,33 @@ pre[class*="language-"] {
   -moz-hyphens: none;
   -ms-hyphens: none;
   hyphens: none;
-
-  &::-moz-selection, ::-moz-selection {
-    text-shadow: none;
-    background: #b3d4fc;
-  }
-}
-
-code[class*="language-"] {
-  &::-moz-selection, ::-moz-selection {
-    text-shadow: none;
-    background: #b3d4fc;
-  }
-}
-
-pre[class*="language-"] {
-  &::selection, ::selection {
-    text-shadow: none;
-    background: #b3d4fc;
-  }
-}
-
-code[class*="language-"] {
-  &::selection, ::selection {
-    text-shadow: none;
-    background: #b3d4fc;
-  }
-}
-
-@media print {
-  code[class*="language-"], pre[class*="language-"] {
-    text-shadow: none;
-  }
+  padding: .4em .8em;
+  margin: .5em 0;
+  overflow: auto;
+  background: url('data:image/svg+xml;charset=utf-8,<svg%20version%3D"1.1"%20xmlns%3D"http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg"%20width%3D"100"%20height%3D"100"%20fill%3D"rgba(0%2C0%2C0%2C.2)">%0D%0A<polygon%20points%3D"0%2C50%2050%2C0%200%2C0"%20%2F>%0D%0A<polygon%20points%3D"0%2C100%2050%2C100%20100%2C50%20100%2C0"%20%2F>%0D%0A<%2Fsvg>');
+  background-size: 1em 1em;
 }
 
 /* Code blocks */
 
-pre[class*="language-"] {
-  padding: 1em;
-  margin: .5em 0;
-  overflow: auto;
-}
-
-:not(pre) > code[class*="language-"], pre[class*="language-"] {
-  background: #f5f2f0;
+code[class*="language-"] {
+  background: black;
+  color: white;
+  box-shadow: -.3em 0 0 .3em black, .3em 0 0 .3em black;
 }
 
 /* Inline code */
 
 :not(pre) > code[class*="language-"] {
-  padding: .1em;
+  padding: .2em;
   border-radius: .3em;
+  box-shadow: none;
   white-space: normal;
 }
 
 .token {
   &.comment, &.prolog, &.doctype, &.cdata {
-    color: slategray;
+    color: #aaa;
   }
 
   &.punctuation {
@@ -113,43 +77,42 @@ pre[class*="language-"] {
     opacity: .7;
   }
 
-  &.property, &.tag, &.boolean, &.number, &.constant, &.symbol, &.deleted {
-    color: #905;
+  &.property, &.tag, &.boolean, &.number, &.constant, &.symbol {
+    color: #0cf;
   }
 
-  &.selector, &.attr-name, &.string, &.char, &.builtin, &.inserted {
-    color: #690;
+  &.selector, &.attr-name, &.string, &.char, &.builtin {
+    color: yellow;
   }
 
   &.operator, &.entity, &.url {
-    color: #9a6e3a;
-
-    /* This background color was intended by the author of this theme. */
-    background: hsla(0, 0%, 100%, 0.5);
+    color: yellowgreen;
   }
 }
 
-.language-css .token.string, .style .token.string {
-  color: #9a6e3a;
-
-  /* This background color was intended by the author of this theme. */
-  background: hsla(0, 0%, 100%, 0.5);
+.language-css .token.string {
+  color: yellowgreen;
 }
 
 .token {
+  &.variable, &.inserted {
+    color: yellowgreen;
+  }
+
   &.atrule, &.attr-value, &.keyword {
-    color: #07a;
+    color: deeppink;
   }
 
-  &.function, &.class-name {
-    color: #DD4A68;
+  &.regex {
+    color: orange;
   }
 
-  &.regex, &.important, &.variable {
-    color: #e90;
+  &.important {
+    color: orange;
+    font-weight: bold;
   }
 
-  &.important, &.bold {
+  &.bold {
     font-weight: bold;
   }
 
@@ -160,16 +123,46 @@ pre[class*="language-"] {
   &.entity {
     cursor: help;
   }
+
+  &.deleted {
+    color: red;
+  }
 }
 
-pre[class*="language-"].line-numbers {
-  position: relative;
-  padding-left: 3.8em;
-  counter-reset: linenumber;
+/* Plugin styles: Diff Highlight */
 
-  > code {
+pre {
+  &.diff-highlight.diff-highlight {
+    > code .token.deleted:not(.prefix) {
+      background-color: rgba(255, 0, 0, 0.3);
+      display: inline;
+    }
+
+    > code .token.inserted:not(.prefix) {
+      background-color: rgba(0, 255, 128, 0.3);
+      display: inline;
+    }
+  }
+
+  > code.diff-highlight.diff-highlight .token.deleted:not(.prefix) {
+    background-color: rgba(255, 0, 0, 0.3);
+    display: inline;
+  }
+
+  > code.diff-highlight.diff-highlight .token.inserted:not(.prefix) {
+    background-color: rgba(0, 255, 128, 0.3);
+    display: inline;
+  }
+
+  &[class*="language-"].line-numbers {
     position: relative;
-    white-space: inherit;
+    padding-left: 3.8em;
+    counter-reset: linenumber;
+
+    > code {
+      position: relative;
+      white-space: inherit;
+    }
   }
 }
 

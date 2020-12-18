@@ -9,9 +9,12 @@ from django.views import generic
 from django.views.generic import RedirectView
 from django.views.generic import TemplateView
 
-from dashboard.models import Post, Category, Media
+from dashboard.models import Post, Category, Tag, Media
+
 from .forms.CategoryCreateForm import CategoryCreateForm
 from .forms.CategoryUpdateForm import CategoryUpdateForm
+from .forms.TagCreateForm import TagCreateForm
+from .forms.TagUpdateForm import TagUpdateForm
 from .forms.MediaUploadForm import MediaUploadNewForm
 from .forms.PostCreateForm import PostCreateForm
 from .forms.PostUpdateForm import PostUpdateForm
@@ -59,6 +62,13 @@ class PostUpdateView(generic.UpdateView):
 
 
 @method_decorator(login_required, name='dispatch')
+class PostDeleteView(generic.DeleteView):
+    model = Post
+    template_name = 'dashboard/layouts/post_confirm_delete.html'
+    success_url = reverse_lazy('dashboard:posts')
+
+
+@method_decorator(login_required, name='dispatch')
 class CategoryListView(generic.ListView):
     model = Category
     template_name = 'dashboard/layouts/categories.html'
@@ -81,6 +91,35 @@ class CategoryCreateView(generic.CreateView):
     template_name = 'dashboard/layouts/category_new.html'
     form_class = CategoryCreateForm
     success_url = '/dashboard/categories'
+
+    def form_valid(self, form):
+        form.save()
+        return super().form_valid(form)
+
+
+@method_decorator(login_required, name='dispatch')
+class TagListView(generic.ListView):
+    model = Tag
+    template_name = 'dashboard/layouts/tags.html'
+
+
+@method_decorator(login_required, name='dispatch')
+class TagCreateView(generic.CreateView):
+    template_name = 'dashboard/layouts/tag_new.html'
+    form_class = TagCreateForm
+    success_url = '/dashboard/tags'
+
+    def form_valid(self, form):
+        form.save()
+        return super().form_valid(form)
+
+
+@method_decorator(login_required, name='dispatch')
+class TagUpdateView(generic.UpdateView):
+    template_name = 'dashboard/layouts/tag_edit.html'
+    model = Tag
+    form_class = TagUpdateForm
+    success_url = '/dashboard/tags'
 
     def form_valid(self, form):
         form.save()

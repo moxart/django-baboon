@@ -19,17 +19,21 @@
                         {% for post in post_list %}
                             <div class="card mb-4 shadow-sm">
                                 <div class="card-header">
-                                    <i data-feather="clock"></i> {{ post.published_at|date }}
+                                    <a href="{% url 'blog:post-single' post.slug %}" class="btn btn-link show" target="_blank"><i data-feather="eye"></i></a>
+                                    <a href="{% url 'dashboard:post-edit' post.pk %}" class="btn btn-link edit"><i data-feather="edit"></i></a>
+                                    <a href="{% url 'dashboard:post-delete' post.pk %}" class="btn btn-link delete"><i data-feather="trash-2"></i></a>
                                 </div>
                                 <div class="card-body">
                                     <h5 class="card-title"><a href="{% url 'dashboard:post-edit' post.pk %}">{{ post.title }}</a></h5>
                                     <p class="card-text">{{ post.excerpt }}</p>
-                                    <a href="{% url 'dashboard:post-edit' post.pk %}" class="btn btn-warning btn-sm">Update Post</a>
+                                </div>
+                                <div class="card-footer">
+                                    {{ post.published_at|date }}
                                 </div>
                             </div>
                         {% empty %}
                             <div class="alert alert-warning" role="alert">
-                                A simple warning alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
+                                No Post Yet Published. <a href="{% url 'dashboard:post-create' %}" class="alert-link ">First Post</a>.
                             </div>
                         {% endfor %}
                     </div>

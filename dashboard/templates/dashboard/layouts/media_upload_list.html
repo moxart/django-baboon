@@ -90,6 +90,14 @@
                                         <a href="{% url 'dashboard:media-delete' media.pk %}" class="btn btn-link delete"><i data-feather="trash-2"></i></a>
                                     </span>
                                 </li>
+                            {% empty %}
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="alert alert-warning" role="alert">
+                                            No Media Yet Uploaded. <a href="{% url 'dashboard:media-upload' %}" class="alert-link ">Upload Media</a>.
+                                        </div>
+                                    </div>
+                                </div>
                             {% endfor %}
                         </ul>
                     </div>

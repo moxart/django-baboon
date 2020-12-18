@@ -1,0 +1,53 @@
+{% extends 'dashboard/base.html' %}
+
+{% block title %} Dashboard {% endblock title %}
+
+{% block body %}
+    {% include 'dashboard/includes/navbar.html' %}
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="col-md-2 d-none d-md-block sidebar">
+                {% include 'dashboard/includes/sidebar.html' %}
+            </nav>
+
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 p-3 p-4">
+                <div class="page-header mb-5">
+                    <h1 class="h2"> <i data-feather="tag"></i> Tags</h1>
+                </div>
+
+                 <div class="row">
+                    <div class="col-sm-12 col-md-8 col-lg-6 pt-6">
+                        <a href="{% url 'dashboard:tag-create' %}" class="btn btn-dark mb-3">Create New</a>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12 col-md-8 col-lg-6 pt-6">
+                        {% if tag_list %}
+                            {% for tag in tag_list %}
+                                <a href="{% url 'dashboard:tag-edit' tag.pk %}" class="list-group-item list-group-item-action">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h5 class="mb-1">{{ tag.title }}</h5>
+                                    </div>
+                                    <p>{{ tag.slug }}</p>
+                                    {% if tag.description %}
+                                        <small>{{ tag.description }}</small>
+                                    {% endif %}
+                                    <small>Created at, {{ tag.published_at|date }}</small>
+                                </a>
+                            {% endfor %}
+                        {% else %}
+                            <div class="list-group">
+                                <div class="alert alert-warning" role="alert">
+                                    A simple warning alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
+                                </div>
+                                <a href="{% url 'dashboard:tag-create' %}" class="btn btn-primary">Create Tag</a>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+{% endblock body %}
