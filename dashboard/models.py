@@ -21,6 +21,11 @@ class Category(models.Model):
     def __str__(self):
         return self.title
 
+    def save(self, force_insert=False, force_update=False, using=None,
+             update_fields=None):
+        self.slug = slugify(self.title)
+        super(Category, self).save()
+
     class Meta:
         verbose_name_plural = 'categories'
         ordering = ['-published_at']
@@ -36,6 +41,11 @@ class Tag(models.Model):
         default=''
     )
     description = models.CharField(max_length=200, null=True, blank=True)
+
+    def save(self, force_insert=False, force_update=False, using=None,
+             update_fields=None):
+        self.slug = slugify(self.title)
+        super(Tag, self).save()
 
     def __str__(self):
         return self.title
@@ -78,6 +88,11 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+    def save(self, force_insert=False, force_update=False, using=None,
+             update_fields=None):
+        self.slug = slugify(self.title)
+        super(Post, self).save()
 
     class Meta:
         ordering = ['-published_at']

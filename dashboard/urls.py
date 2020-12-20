@@ -6,7 +6,7 @@ from . import views
 
 app_name = 'dashboard'
 urlpatterns = [
-    path('dashboard/', views.DashboardListView.as_view(), name='dashboard'),
+    path('dashboard/', views.DashboardView.as_view(), name='dashboard'),
 
     path('dashboard/posts', views.PostListView.as_view(), name='posts'),
     path('dashboard/post/create', views.PostCreateView.as_view(), name='post-create'),

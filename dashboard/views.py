@@ -6,8 +6,6 @@ from django.shortcuts import reverse
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views import generic
-from django.views.generic import RedirectView
-from django.views.generic import TemplateView
 
 from dashboard.models import Post, Category, Tag, Media
 
@@ -24,7 +22,7 @@ from .forms.UserUpdateForm import UserUpdateForm
 
 
 @method_decorator(login_required, name='dispatch')
-class DashboardListView(TemplateView):
+class DashboardView(generic.TemplateView):
     queryset = Post.objects.filter(status="publish").order_by('-published_at')
     template_name = 'dashboard/index.html'
 
@@ -189,7 +187,7 @@ class LoginView(generic.FormView):
         return HttpResponseRedirect('/dashboard')
 
 
-class LogoutView(RedirectView):
+class LogoutView(generic.RedirectView):
     url = '/login/'
 
     def get(self, request, *args, **kwargs):
