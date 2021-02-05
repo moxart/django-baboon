@@ -9,23 +9,21 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-md-10 offset-md-1 post__single">
-                <section class="mb-4">
-                    {% thumbnail post.image "1200x650" crop="center" as im %}
-                        <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{ post.title }}" class="img-fluid rounded">
-                    {% endthumbnail %}
-                </section>
-                <header>
+            <div class="col-md-8 offset-md-2 post__single">
+                <header class="p-3 mr-lg-3">
                     <div class="page__header">
                         <h3>{{ post.title|safe }}</h3>
                     </div>
-                    <div class="post__meta">
-                        <div class="author">
-                            <a href="{% url 'blog:post-author' post.author %}">@{{ post.author }}</a>
-                        </div>
+                    <div class="post__meta py-4">
+                        <div class="author mr-3"><a href="{% url 'blog:post-author' post.author %}">@{{ post.author }}</a></div>
                         <time>{{ post.published_at|date }}</time>
                     </div>
                 </header>
+                <section class="mb-4 post__thumbnail">
+                    {% thumbnail post.image "1200x650" crop="center" as im %}
+                        <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{ post.title }}" class="img-fluid">
+                    {% endthumbnail %}
+                </section>
                 <div class="content">
                     <main class="main">
                         {{ post.content|safe }}

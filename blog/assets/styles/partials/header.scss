@@ -1,15 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Quattrocento&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;700&display=swap');
 
 .navbar__baboon {
-  background-color: #383838;
+  background-color: #0A0908;
   opacity: 1;
   transform: translateY(0);
   -webkit-transition: all 0.3s ease-out;
   transition: all 0.3s ease-out;
 
   .navbar-brand {
-    font-family: 'Quattrocento', serif;
-    font-weight: bold;
+    font-family: 'Merriweather', sans-serif;
+    letter-spacing: 1.3px;
+    color: #aa8c68 !important;
 
     img {
       margin-right: .75rem;
@@ -17,7 +18,6 @@
   }
 
   .btn__contact {
-    background-color: #212121;
     font-size: 1rem;
     font-weight: 100;
     letter-spacing: 1px;
@@ -25,29 +25,17 @@
   }
 
   .btn__login {
-    background-color: #212121;
     font-size: 1rem;
     font-weight: 100;
     letter-spacing: 1px;
     border: none;
-
-    &:hover,
-    &:focus {
-      background-color: #111;
-    }
   }
 
   .btn__logout {
-    background-color: #212121;
     font-size: 1rem;
     font-weight: 100;
     letter-spacing: 1px;
     border: none;
-
-    &:hover,
-    &:focus {
-      background-color: #111;
-    }
   }
 
   .navbar-toggler {
@@ -65,14 +53,12 @@
     height: 19px;
     background-image: none;
     position: relative;
-    border-bottom: 3px solid #c19e74;
     transition: all 300ms linear;
 
     &:after, &:before {
       width: 24px;
       position: absolute;
       height: 3px;
-      background-color: #c19e74;
       top: 0;
       left: 0;
       content: '';
@@ -95,6 +81,13 @@
     }
 
     border-color: transparent;
+  }
+
+  .dropdown-menu {
+    top: 35px;
+    border-color: transparent;
+    border-bottom-right-radius: 9px;
+    border-bottom-left-radius: 9px;
   }
 }
 

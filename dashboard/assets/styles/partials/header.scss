@@ -1,14 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;700&display=swap');
+
 .navbar {
 	background-color: #08090A;
 
 	.navbar-brand {
+		font-family: 'Merriweather', sans-serif;
 		padding-top: .75rem;
 		padding-bottom: .75rem;
 		font-size: 1rem;
 		background-color: #08090A;
 		color: #F8BD7F;
 		font-weight: 400;
-		letter-spacing: .1rem;
+		letter-spacing: 1.3px;
 
 		span {
 			vertical-align: middle;

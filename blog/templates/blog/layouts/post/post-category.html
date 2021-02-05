@@ -9,20 +9,19 @@
     <div class="container">
         <div class="row">
             {% for post in posts %}
-                <div class="col-md-6 col-xs-12">
-                    <div class="post__card">
+                <div class="col-md-4 col-xs-12">
+                    <div class="post__card mr-lg-3">
                         <a href="{% url 'blog:post-single' post.slug %}">
                             {% thumbnail post.image "570x470" crop="center" as im %}
-                                <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{ post.title }}" class="img-fluid rounded">
+                                <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{ post.title }}" class="img-fluid">
                             {% endthumbnail %}
                         </a>
                         <div class="post__title"><a href="{% url 'blog:post-single' post.slug %}">{{ post.title }}</a></div>
+                        <div class="post__excerpt">{{ post.excerpt }}</div>
                         <div class="post__meta">
                             <div class="author"><a href="{% url 'blog:post-author' post.author %}">@{{ post.author }}</a></div>
                             <time>{{ post.published_at|date }}</time>
                         </div>
-                        <div class="post__excerpt">{{ post.excerpt }}</div>
-                        <div class="post__tags">{{post.tags.all|join:" . "|lower}}</div>
                     </div>
                 </div>
             {% empty %}

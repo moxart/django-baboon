@@ -9,7 +9,7 @@ class HomeView(generic.ListView):
     model = Post
     template_name = 'blog/index.html'
     context_object_name = 'posts'
-    paginate_by = 2
+    paginate_by = 12
     queryset = Post.objects.filter(status="publish").order_by('-published_at')
 
     def get_context_data(self, *, object_list=None, **kwargs):

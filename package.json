@@ -16,7 +16,9 @@
     "url": "https://github.com/moxart/django-baboon/issues"
   },
   "homepage": "https://github.com/moxart/django-baboon#readme",
-  "dependencies": {},
+  "dependencies": {
+    "node-gyp": "^3.8.0"
+  },
   "devDependencies": {
     "autoprefixer": "^10.0.2",
     "bootstrap": "^4.5.3",
