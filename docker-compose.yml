@@ -1,11 +1,28 @@
-version: "3.8"
+version: '3.9'
 
 services:
-  django:
-    container_name: django_baboon
-    build: .
-    command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+  web:
+    container_name: baboon_web_dev
+    build: ./django
+    restart: on-failure
     volumes:
-      - .:/code
+      - ./django/:/app/
     ports:
-      - "8000:8000"
+      - "8001:8001"
+    env_file:
+      - ./.env.dev
+    depends_on:
+      - db
+
+  db:
+    container_name: baboon_postgres_dev
+    image: postgres
+    volumes:
+      - db_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=django_app
+
+volumes:
+  db_data:
