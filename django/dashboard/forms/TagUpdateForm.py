@@ -12,3 +12,7 @@ class TagUpdateForm(forms.ModelForm):
             'description': forms.Textarea(attrs={'class': 'textarea form-control', 'rows': 3}),
         }
         fields = '__all__'
+        labels = {
+            'title': 'عنوان',
+            'description': 'توضیحات'
+        }

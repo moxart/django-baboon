@@ -1,6 +1,7 @@
 {% extends 'blog/base.html' %}
 {% load static %}
 {% load thumbnail %}
+{% load jalali_tags %}
 {% block title %} Blog {% endblock title %}
 {% block body_class %}blog post post-single{% endblock body_class %}
 
@@ -16,7 +17,7 @@
                     </div>
                     <div class="post__meta py-4">
                         <div class="author mr-3"><a href="{% url 'blog:post-author' post.author %}">@{{ post.author }}</a></div>
-                        <time>{{ post.published_at|date }}</time>
+                        <time>{{ post.published_at|to_jalali:'%A %d %B %Y' }}</time>
                     </div>
                 </header>
                 <section class="mb-4 post__thumbnail">

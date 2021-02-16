@@ -4,6 +4,7 @@ html {
 }
 
 body {
+  font-family: IRANSans !important;
   padding-top: 9rem;
   margin-bottom: 150px;
 }
@@ -11,4 +12,22 @@ body {
 a {
   outline: none !important;
   box-shadow: none !important;
+}
+
+pre[class*="language"] {
+  text-align: right !important;
+  direction: rtl !important;
+  padding: .4em 1em !important;
+  border-radius: 9px !important;
+}
+
+@media (max-width: 576px) {
+  body {
+    padding-top: 6rem;
+  }
+
+  pre[class*="language"] {
+    font-size: 14px !important;
+    border-radius: 0 !important;
+  }
 }

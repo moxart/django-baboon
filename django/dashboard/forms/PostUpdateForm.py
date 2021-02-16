@@ -9,6 +9,10 @@ class PostUpdateForm(forms.ModelForm):
         widgets = {
             'author': forms.Select(attrs={'class': 'form-control form-control-lg', 'style': 'width: 150px'}),
             'title': forms.TextInput(attrs={'class': 'form-control form-control-lg', 'autocomplete': 'off'}),
+            'en_title': forms.TextInput(attrs={'class': 'form-control form-control-lg text-right', 'dir': 'ltr',
+                                               'autocomplete': 'off'}),
+            'slug': forms.TextInput(attrs={'class': 'form-control form-control-lg text-right', 'dir': 'ltr',
+                                           'autocomplete': 'off'}),
             'content': forms.Textarea(attrs={'id': 'editor', 'rows': 15}),
             'excerpt': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
             'category': forms.Select(attrs={'class': 'form-control form-control-lg'}),
@@ -17,3 +21,15 @@ class PostUpdateForm(forms.ModelForm):
             'status': forms.Select(attrs={'class': 'form-control form-control-lg', 'style': 'width: 150px'}),
         }
         fields = '__all__'
+        labels = {
+            'author': 'نویسنده',
+            'title': 'عنوان',
+            'en_title': 'نامک با کاراکتر انگلیسی',
+            'content': 'متن',
+            'excerpt': 'خلاصه',
+            'category': 'دسته',
+            'tags': 'برچسب‌ها',
+            'description': 'توضیحات',
+            'status': 'وضعیت',
+            'image': 'تصویر شاخص'
+        }

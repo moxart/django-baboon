@@ -1,6 +1,7 @@
 {% extends 'blog/base.html' %}
 {% load static %}
 {% load thumbnail %}
+{% load jalali_tags %}
 {% block title %} Blog {% endblock title %}
 
 {% block body %}
@@ -20,14 +21,14 @@
                         <div class="post__excerpt">{{ post.excerpt }}</div>
                         <div class="post__meta">
                             <div class="author"><a href="{% url 'blog:post-author' post.author %}">@{{ post.author }}</a></div>
-                            <time>{{ post.published_at|date }}</time>
+                            <time>{{ post.published_at|to_jalali:'%A %d %B %Y %H:%M' }}</time>
                         </div>
                     </div>
                 </div>
             {% empty %}
                 <div class="col-md-6 col-xs-12">
                     <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                        <strong>No Post Found.</strong>
+                        <strong>چیزی یافت نشد.</strong>
                     </div>
                 </div>
             {% endfor %}

@@ -12,12 +12,12 @@
 
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 p-3 p-4">
                 <div class="page-header mb-5">
-                    <h1 class="h2"> <i data-feather="folder"></i> Categories</h1>
+                    <h1 class="h2"> <i data-feather="folder"></i> دسته‌ها</h1>
                 </div>
 
-                 <div class="row">
+                <div class="row">
                     <div class="col-sm-12 col-md-8 col-lg-6 pt-6">
-                        <a href="{% url 'dashboard:category-create' %}" class="btn btn-dark mb-3">Create New</a>
+                        <a href="{% url 'dashboard:category-create' %}" class="btn btn-dark mb-3">ایجاد دسته جدید</a>
                     </div>
                 </div>
 
@@ -39,9 +39,9 @@
                         {% else %}
                             <div class="list-group">
                                 <div class="alert alert-warning" role="alert">
-                                    A simple warning alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
+                                    هیچ دسته‌ای یافت نشد، ابتدا دسته جدید را بسازید.
                                 </div>
-                                <a href="{% url 'dashboard:category-create' %}" class="btn btn-primary">Create Category</a>
+                                <a href="{% url 'dashboard:category-create' %}" class="btn btn-primary">ایجاد دسته جدید</a>
                             </div>
                         {% endif %}
                     </div>

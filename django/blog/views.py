@@ -35,6 +35,7 @@ class PostCategoryView(generic.ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['posts'] = Post.objects.filter(
+            status="publish",
             category__slug=self.kwargs['slug']
         )
         context['categories'] = Category.objects.all()
@@ -49,6 +50,7 @@ class PostAuthorView(generic.ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['posts'] = Post.objects.filter(
+            status="publish",
             author__username=self.kwargs['username']
         )
         context['categories'] = Category.objects.all()

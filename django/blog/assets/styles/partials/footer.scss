@@ -1,7 +1,22 @@
 .footer {
+  span {
+    color: #444;
+    border-radius: 9px;
+    padding: 6px;
+  }
+
+  font-family: 'Roboto Slab', serif;
   position: absolute;
   bottom: 0;
   width: 100%;
-  font-size: 13px;
+  font-size: 14px;
   text-align: center;
+
+  a {
+    &:hover,
+    &:focus {
+      text-decoration: none;
+      color: #aa8c68 !important;
+    }
+  }
 }

@@ -13,4 +13,9 @@ class ContactForm(forms.ModelForm):
             'message': forms.Textarea(attrs={'class': 'form-control', 'rows': 5})
         }
         fields = '__all__'
-
+        labels = {
+            'name': 'نام',
+            'email': 'ایمیل',
+            'subject': 'موضوع',
+            'message': 'پیام',
+        }

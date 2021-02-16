@@ -8,8 +8,7 @@
   transition: all 0.3s ease-out;
 
   .navbar-brand {
-    font-family: 'Merriweather', sans-serif;
-    letter-spacing: 1.3px;
+    font-weight: 700;
     color: #aa8c68 !important;
 
     img {
@@ -19,21 +18,17 @@
 
   .btn__contact {
     font-size: 1rem;
-    font-weight: 100;
-    letter-spacing: 1px;
     border: none;
   }
 
   .btn__login {
     font-size: 1rem;
-    font-weight: 100;
     letter-spacing: 1px;
     border: none;
   }
 
   .btn__logout {
     font-size: 1rem;
-    font-weight: 100;
     letter-spacing: 1px;
     border: none;
   }
@@ -43,31 +38,21 @@
     border: none;
     padding-right: 0;
 
+    span {
+      font-family: 'Roboto Slab', serif;
+      font-size: 14px;
+      color: #555;
+      letter-spacing: 3px;
+
+      &:hover,
+      &:focus,
+      &:active {
+        color: #ddd;
+      }
+    }
+
     &:active, &:focus {
       outline: none;
-    }
-  }
-
-  .navbar-toggler-icon {
-    width: 24px;
-    height: 19px;
-    background-image: none;
-    position: relative;
-    transition: all 300ms linear;
-
-    &:after, &:before {
-      width: 24px;
-      position: absolute;
-      height: 3px;
-      top: 0;
-      left: 0;
-      content: '';
-      z-index: 2;
-      transition: all 300ms linear;
-    }
-
-    &:after {
-      top: 8px;
     }
   }
 
@@ -84,10 +69,18 @@
   }
 
   .dropdown-menu {
+    font-family: 'Roboto Slab', serif;
+    text-align: right;
     top: 35px;
     border-color: transparent;
     border-bottom-right-radius: 9px;
     border-bottom-left-radius: 9px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, .3);
+
+    a {
+      font-weight: 400;
+      letter-spacing: 1px;
+    }
   }
 }
 

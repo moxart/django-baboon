@@ -4,23 +4,23 @@
 {% block body_class %}blog contact{% endblock body_class %}
 
 {% block body %}
-    {% include 'blog/includes/navbar.html' %}
+    {% include 'contact/includes/navbar.html' %}
 
     <div class="container">
         <form class="form-contact" action="" method="post">
             {% csrf_token %}
 
             <div class="form-group">
-                <h3>Hang Out With Me.</h3>
+                <h3 class="font-weight-light">با من در تماس باشید</h3>
                 {% for field in form %}
                     <label for="{{ form.subject.id_for_label }}" class="label">{{ field.label_tag }}</label>
                     {{ field }}
                     <br>
                 {% endfor %}
-                <button type="submit" class="btn btn-lg btn-dark btn-block">Submit <i data-feather="arrow-right"></i></button>
+                <button type="submit" class="btn btn-lg btn-dark btn-block">ارسال <i data-feather="arrow-right"></i></button>
             </div>
         </form>
     </div>
 
-    {% include 'blog/includes/footer.html' %}
+    {% include 'contact/includes/footer.html' %}
 {% endblock body %}

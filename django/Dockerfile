@@ -14,7 +14,7 @@ WORKDIR $HOME_APP
 
 COPY requirements.txt .
 
-RUN apk add --no-cache --virtual .build-deps \
+RUN apk add --virtual .build-deps \
     ca-certificates gcc postgresql-dev linux-headers musl-dev \
     libffi-dev jpeg-dev zlib-dev \
     && pip install -r requirements.txt \
@@ -40,4 +40,4 @@ RUN chmod -R 755 $HOME_APP
 
 USER app
 
-ENTRYPOINT ["./scripts/entrypoint.sh"]
+ENTRYPOINT ["./scripts/docker-entrypoint.sh"]

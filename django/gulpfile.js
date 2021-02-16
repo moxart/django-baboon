@@ -2,6 +2,7 @@ const gulp = require('gulp');
 const autoprefixer = require('autoprefixer');
 const browserSync = require('browser-sync').create();
 const sass = require('gulp-sass');
+const rtlcss = require('gulp-rtlcss');
 const minify = require('gulp-minify');
 const uglify = require('gulp-uglify');
 const imagemin = require('gulp-imagemin');
@@ -20,6 +21,7 @@ function styles() {
         }).on('error', sass.logError))
         .pipe(rename({ suffix: '.min'}))
         .pipe(postcss([autoprefixer()]))
+        .pipe(rtlcss())
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('blog/static/styles'))
         .pipe(browserSync.stream());
@@ -32,6 +34,7 @@ function styles() {
         }).on('error', sass.logError))
         .pipe(rename({ suffix: '.min'}))
         .pipe(postcss([autoprefixer()]))
+        .pipe(rtlcss())
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('dashboard/static/styles'))
         .pipe(browserSync.stream());
@@ -95,7 +98,18 @@ function images() {
         .pipe(browserSync.stream());
 
     return merge(blog, dashboard);
+}
 
+function fonts() {
+    var blog = gulp.src('blog/assets/fonts/**/*')
+        .pipe(gulp.dest('blog/static/fonts'))
+        .pipe(browserSync.stream());
+
+    var dashboard = gulp.src('blog/assets/fonts/**/*')
+        .pipe(gulp.dest('dashboard/static/fonts'))
+        .pipe(browserSync.stream());
+
+    return merge(blog, dashboard);
 }
 
 function clean() {
@@ -103,37 +117,42 @@ function clean() {
             './dashboard/static/styles',
             './dashboard/static/scripts',
             './dashboard/static/images',
+            './dashboard/static/fonts',
             './blog/static/styles',
             './blog/static/scripts',
-            './blog/static/images'
+            './blog/static/images',
+            './blog/static/fonts',
         ]
     );
 }
 
 function watcher() {
     browserSync.init({
-        proxy: '127.0.0.1:8000',
+        proxy: '127.0.0.1:8002',
         open: false,
         notify: false
     });
 
     gulp.watch('dashboard/assets/**/*.scss', styles);
     gulp.watch('dashboard/assets/**/*.js', scripts);
-    gulp.watch('dashboard/assets/*', images);
+    gulp.watch('dashboard/assets/images/**/*', images);
+    gulp.watch('dashboard/assets/fonts/**/*', fonts)
     gulp.watch('dashboard/templates/**/*.html').on('change', browserSync.reload);
 
     gulp.watch('blog/assets/**/*.scss', styles);
     gulp.watch('blog/assets/**/*.js', scripts);
-    gulp.watch('blog/assets/*', images);
+    gulp.watch('blog/assets/images/**/*', images);
+    gulp.watch('blog/assets/fonts/**/*', fonts);
     gulp.watch('blog/templates/**/*.html').on('change', browserSync.reload);
 }
 
-const build = gulp.series(clean, gulp.parallel(styles, scripts, images));
+const build = gulp.series(clean, gulp.parallel(styles, scripts, fonts, images));
 const watch = gulp.series(build, gulp.parallel(watcher));
 
 exports.styles = styles;
 exports.scripts = scripts;
 exports.images = images;
+exports.fonts = fonts;
 exports.clean = clean;
 exports.build = build;
 exports.watch = watch;

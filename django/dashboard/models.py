@@ -1,7 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
-from django.db.models.signals import pre_save
-from django.template.defaultfilters import slugify
+from django.utils.text import slugify
 from sorl.thumbnail import ImageField
 
 
@@ -53,16 +52,17 @@ class Tag(models.Model):
 
 class Post(models.Model):
     POST_STATUS = [
-        ('draft', 'Draft'),
-        ('pending', 'Pending'),
-        ('publish', 'Publish'),
+        ('draft', 'پیش نویس'),
+        ('pending', 'در انتظار'),
+        ('publish', 'انتشار'),
     ]
 
     title = models.CharField(max_length=200, unique=True)
+    en_title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(
         max_length=200,
-        editable=False,
         unique=True,
+        editable=False,
         null=True,
         default=''
     )
@@ -91,7 +91,7 @@ class Post(models.Model):
 
     def save(self, force_insert=False, force_update=False, using=None,
              update_fields=None):
-        self.slug = slugify(self.title)
+        self.slug = slugify(self.en_title, allow_unicode=True)
         super(Post, self).save()
 
     class Meta:
@@ -107,23 +107,3 @@ class Media(models.Model):
         blank=False
     )
     uploaded_at = models.DateTimeField(auto_now=True)
-
-
-def _generate_unique_slug(instance):
-    slug = slugify(instance.title)
-    qs = Post.objects.filter(slug=slug).order_by('-id')
-
-    if qs.exists():
-        slug = '%s-%s' % (slug, qs.first().id)
-
-    return slug
-
-
-def pre_save_post_receiver(sender, instance, *args, **kwargs):
-    if instance.title and not instance.slug:
-        instance.slug = _generate_unique_slug(instance)
-
-
-pre_save.connect(pre_save_post_receiver, sender=Post)
-pre_save.connect(pre_save_post_receiver, sender=Category)
-pre_save.connect(pre_save_post_receiver, sender=Tag)

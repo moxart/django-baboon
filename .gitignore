@@ -12,6 +12,11 @@ bower_components
 media/images
 media/cache
 
+docker-data
+media_volume
+static_volume
+db_data
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

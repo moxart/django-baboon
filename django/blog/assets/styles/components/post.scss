@@ -1,27 +1,6 @@
-@media (max-width: 575.98px) {
-  div.post__card {
-    .post__title {
-      line-height: 2.3rem;
-    }
-  }
-
-  div.post__single {
-    div.page__header {
-      h3 {
-        font-size: 2rem !important;
-        line-height: 2.5rem;
-      }
-    }
-    div.content {
-      background-color: transparent !important;
-      padding: 0 !important;
-      border-radius: 0;
-    }
-  }
-}
-
 div.post__card {
   margin-bottom: 5rem;
+  line-height: 1.6rem;
 
   img {
     border-radius: 1.5rem;
@@ -30,9 +9,11 @@ div.post__card {
   .post__title {
     font-size: 1.5rem;
     font-weight: 700;
+    line-height: 34px;
     max-width: 100%;
     padding-left: 5%;
-    padding-top: 3%;
+    padding-top: 5%;
+    padding-bottom: 3%;
 
     a {
       color: #292929 !important;
@@ -53,8 +34,15 @@ div.post__card {
     div.author {
       margin-right: 1rem;
       text-transform: capitalize;
+      direction: rtl;
       a {
         color: rgba(41, 41, 41, 1);
+
+        &:hover,
+        &:focus,
+        &:active {
+          text-decoration: none;
+        }
       }
 
       time {
@@ -84,8 +72,12 @@ div.post__single {
 
   div.content {
     padding: 1rem;
+    font-size: 18px;
+    font-weight: 300;
+    text-align: justify;
+    color: #424242;
+    border-bottom: 1px solid #ddd;
     border-radius: 6px;
-    color: rgba(41, 41, 41, 1);
   }
 
   div.page__header {
@@ -99,18 +91,45 @@ div.post__single {
 
   div.post__meta {
     display: flex;
-    justify-content: left;
-    text-align: left;
-    font-size: .9375rem;
+    font-size: .8375rem;
+    margin: 1rem 0;
 
-    margin-right: 1rem;
-    text-transform: capitalize;
-    a {
-      color: rgba(41, 41, 41, 1);
+    div.author {
+      text-transform: capitalize;
+      direction: rtl;
+
+      a {
+        color: rgba(41, 41, 41, 1);
+
+        &:hover,
+        &:focus,
+        &:active {
+          text-decoration: none;
+        }
+      }
+
+      time {
+        color: rgba(117, 117, 117, 1);
+      }
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  div.post__single {
+    div.page__header {
+      h3 {
+        font-size: 24px !important;
+        font-weight: bold;
+      }
     }
 
-    time {
-      color: rgba(117, 117, 117, 1);
+    div.post__meta {
+      padding-bottom: 0 !important;
+
+      div.author {
+        font-weight: 600;
+      }
     }
   }
 }

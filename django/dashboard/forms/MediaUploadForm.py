@@ -11,3 +11,7 @@ class MediaUploadNewForm(forms.ModelForm):
                 attrs={'class': 'form-control form-control-lg', 'autocomplete': 'off'}),
         }
         fields = '__all__'
+        labels = {
+            'title': 'عنوان',
+            'image': 'رسانه'
+        }

@@ -27,9 +27,8 @@ body.login {
 
     h3 {
       margin-bottom: 2rem;
-      font-weight: 100;
-      font-size: 3rem;
-      text-transform: uppercase;
+      font-weight: 700;
+      font-size: 40px;
       color: #721817;
     }
 
@@ -43,7 +42,14 @@ body.login {
       }
     }
 
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      direction: rtl;
+    }
+
     button[type="submit"] {
+      border: none;
       margin-top: 1rem;
       i {
         text-align: right;

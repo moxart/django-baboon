@@ -13,14 +13,14 @@
             <a href=""><img class="mb-3" src="{% static 'images/samurai-baboon-login.png' %}" width="100" height="100" alt="samurai baboon login"></a>
         </div>
         <div class="form-group shadow">
-            <h3>Login</h3>
+            <h3>ورود</h3>
             {% for field in form %}
                 <label for="{{ form.subject.id_for_label }}" class="label">{{ field.label_tag }}</label>
                 {{ field }}
             {% endfor %}
             <br>
-            <button type="submit" class="btn btn-lg btn-dark btn-block">Login <i data-feather="arrow-right"></i></button>
+            <button type="submit" class="btn btn-lg btn-dark btn-block">ورود </button>
         </div>
-        <a href="{% url 'blog:homepage' %}" class="back-to-home">Back to Home</a>
+        <a href="{% url 'blog:homepage' %}" class="back-to-home">برگشت به سایت</a>
     </form>
 {% endblock body %}

@@ -12,11 +12,11 @@
 
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 p-3 p-4">
                 <div class="page-header mb-5">
-                    <h1 class="h2"> <i data-feather="file-text"></i> New Post</h1>
+                    <h1 class="h2"> <i data-feather="file-text"></i> پست جدید</h1>
                 </div>
                 <div class="row">
                     <div class="col-sm-12 col-md-8 col-lg-6 pt-6">
-                        <form method="post">
+                        <form method="post" enctype="multipart/form-data">
                             {% csrf_token %}
 
                             {% for field in form %}
@@ -27,12 +27,11 @@
 
                             {% endfor %}
                             <br>
-                            <button type="submit" class="btn btn-dark btn-lg">Publish</button>
+                            <button type="submit" class="btn btn-dark btn-lg">انتشار</button>
                         </form>
                     </div>
                 </div>
             </main>
         </div>
     </div>
-
 {% endblock body %}
