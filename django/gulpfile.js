@@ -65,7 +65,7 @@ function scripts() {
 }
 
 function images() {
-    var blog = gulp.src('blog/assets/images/*')
+    var blog = gulp.src('blog/assets/images/**/*')
         .pipe(imagemin([
             imagemin.gifsicle({interlaced: true}),
             imagemin.mozjpeg({quality: 75, progressive: true}),
@@ -81,7 +81,7 @@ function images() {
         .pipe(gulp.dest('blog/static/images'))
         .pipe(browserSync.stream());
 
-    var dashboard = gulp.src('dashboard/assets/images/*')
+    var dashboard = gulp.src('dashboard/assets/images/**/*')
         .pipe(imagemin([
             imagemin.gifsicle({interlaced: true}),
             imagemin.mozjpeg({quality: 75, progressive: true}),
