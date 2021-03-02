@@ -8,8 +8,8 @@ div.post__card {
 
   .post__title {
     font-size: 1.5rem;
-    font-weight: 700;
-    line-height: 34px;
+    font-weight: 900;
+    line-height: 1.8;
     max-width: 100%;
     padding-left: 5%;
     padding-top: 5%;
@@ -30,11 +30,13 @@ div.post__card {
     font-size: .8375rem;
     margin: 1rem 0;
     padding-left: 5%;
+    font-weight: 400;
 
     div.author {
       margin-right: 1rem;
       text-transform: capitalize;
       direction: rtl;
+
       a {
         color: rgba(41, 41, 41, 1);
 
@@ -78,20 +80,26 @@ div.post__single {
     color: #424242;
     border-bottom: 1px solid #ddd;
     border-radius: 6px;
+
+    h1, h2, h3, h4, h5, h6 {
+      font-weight: 900;
+    }
   }
 
   div.page__header {
     h3 {
       font-size: 48px !important;
-      font-weight: 400;
+      font-weight: 900;
       text-align: left;
       color: rgba(41, 41, 41, 1);
+      line-height: 4.5rem;
     }
   }
 
   div.post__meta {
     display: flex;
     font-size: .8375rem;
+    font-weight: 700;
     margin: 1rem 0;
 
     div.author {
@@ -120,7 +128,8 @@ div.post__single {
     div.page__header {
       h3 {
         font-size: 24px !important;
-        font-weight: bold;
+        font-weight: 900;
+        line-height: 48px;
       }
     }
 
