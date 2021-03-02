@@ -147,7 +147,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
 LANGUAGE_CODE = 'fa-IR'
-locale.setlocale(locale.LC_ALL, "fa_IR.UTF-8")
+# locale.setlocale(locale.LC_ALL, "fa_IR.UTF-8")
 TIME_ZONE = 'Asia/Tehran'
 
 USE_I18N = True
